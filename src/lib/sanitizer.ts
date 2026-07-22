@@ -41,6 +41,11 @@ export const defaultRules: Rule[] = [
     pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt)\s*[:=]\s*(['"])(.*?)\1/gid,
     valueGroup: 2,
   },
+  {
+    name: 'Env Assignment',
+    pattern: /^[ \t]*[a-zA-Z0-9_]*?(?:PASSWORD|SECRET|TOKEN|API_?KEY|SEED|PWD|AUTH|HASH|SALT|URL|USER|HOST|SERVER|DATABASE|DB)[a-zA-Z0-9_]*?\s*=\s*(['"]?)(.+?)\1?(?=\s*$)/gimd,
+    valueGroup: 2,
+  },
 
   // Network
   {
