@@ -1,6 +1,6 @@
 # 🕵️ Code Sanitizer
 
-> **Because "I accidentally committed production credentials to a public pastebin" is a terrible origin story.**
+Because "I accidentally committed production credentials to a public pastebin" is a terrible origin story.
 
 ## 🚨 The Problem
 You’re asking for help on a forum because your database connection is failing. You copy-paste your `config.yaml` to get some fresh eyes on it, and *whoops!* You just shared your production database password with the entire internet. We've all been there, and it's a nightmare.
