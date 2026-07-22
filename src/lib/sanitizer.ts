@@ -38,13 +38,13 @@ export const defaultRules: Rule[] = [
   },
   {
     name: 'Secret Assignment',
-    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt)\s*[:=]\s*(['"])(.*?)\1/gid,
+    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user|server|host|url)(?:["']?)\s*[:=]\s*(['"])(.*?)\1/gdi,
     valueGroup: 2,
   },
   {
-    name: 'Env Assignment',
-    pattern: /^[ \t]*[a-zA-Z0-9_]*?(?:PASSWORD|SECRET|TOKEN|API_?KEY|SEED|PWD|AUTH|HASH|SALT|URL|USER|HOST|SERVER|DATABASE|DB)[a-zA-Z0-9_]*?\s*=\s*(['"]?)(.+?)\1?(?=\s*$)/gimd,
-    valueGroup: 2,
+    name: 'Secret Assignment (Unquoted)',
+    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user|server|host|url)(?:["']?)\s*[:=]\s*(?:['"]?)([^\s,;\]})&"']+)/gdi,
+    valueGroup: 1,
   },
 
   // Network
