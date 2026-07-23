@@ -38,12 +38,12 @@ export const defaultRules: Rule[] = [
   },
   {
     name: 'Secret Assignment',
-    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user|server|host|url)(?:["']?)\s*[:=]\s*(['"])(.*?)\1/gdi,
+    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user(?:name)?|server|host)(?:["']?)\s*[:=]\s*(['"])(.*?)\1/gdi,
     valueGroup: 2,
   },
   {
     name: 'Secret Assignment (Unquoted)',
-    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user|server|host|url)(?:["']?)\s*[:=]\s*(?:['"]?)([^\s,;\]})&"']+)/gdi,
+    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user(?:name)?|server|host)(?:["']?)\s*[:=]\s*(?:['"]?)([^\s,;\]})&"']+)/gdi,
     valueGroup: 1,
   },
 
@@ -63,6 +63,12 @@ export const defaultRules: Rule[] = [
     pattern: /\b(?:[0-9A-Fa-f]{2}[:-]){5}(?:[0-9A-Fa-f]{2})\b/gd,
   },
   {
+    name: 'URL Hostname',
+    pattern: /(?:https?:\/\/)([^:/\s'"]+)/gid,
+    valueGroup: 1,
+    filter: (match) => match !== 'localhost' && match !== '127.0.0.1',
+  },
+  {
     name: 'Cloud Domain',
     pattern: /\b[a-zA-Z0-9.-]+\.(?:s3\.amazonaws\.com|azure\.net|database\.windows\.net|blob\.core\.windows\.net)\b/gd,
   },
@@ -78,7 +84,8 @@ export const defaultRules: Rule[] = [
   },
   {
     name: 'Windows User Path',
-    pattern: /[a-zA-Z]:\\Users\\[a-zA-Z0-9_.-]+/gid,
+    pattern: /(?:[a-zA-Z]:\\\\)(Users\\\\[a-zA-Z0-9_.-]+)/gid,
+    valueGroup: 1,
   },
 
   // Operational
