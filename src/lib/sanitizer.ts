@@ -72,6 +72,10 @@ export const defaultRules: Rule[] = [
     name: 'Cloud Domain',
     pattern: /\b[a-zA-Z0-9.-]+\.(?:s3\.amazonaws\.com|azure\.net|database\.windows\.net|blob\.core\.windows\.net)\b/gd,
   },
+  {
+    name: 'RFC 1123 Hostname',
+    pattern: /\b(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,63}\b/gd,
+  },
 
   // Identity
   {
