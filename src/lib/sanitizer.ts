@@ -38,12 +38,12 @@ export const defaultRules: Rule[] = [
   },
   {
     name: 'Secret Assignment',
-    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user(?:name)?|server|host)(?:["']?)\s*[:=]\s*(['"])(.*?)\1/gdi,
+    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user(?:name)?|server|host)[a-z0-9_]*(?:["']?)\s*[:=]\s*(['"])(.*?)\1/gdi,
     valueGroup: 2,
   },
   {
     name: 'Secret Assignment (Unquoted)',
-    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user(?:name)?|server|host)(?:["']?)\s*[:=]\s*(?:['"]?)([^\s,;\]})&"']+)/gdi,
+    pattern: /(?:password|secret|token|api_?key|seed|pwd|auth|hash|salt|user(?:name)?|server|host)[a-z0-9_]*(?:["']?)\s*[:=]\s*(?:['"]?)([^\s,;\]})&"']+)/gdi,
     valueGroup: 1,
   },
 
