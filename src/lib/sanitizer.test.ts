@@ -20,6 +20,8 @@ DB_ROOT_PASSWORD=mabcd12312
 SMTP_SERVER=host.domain.com
 MSSQL_HOST=INFOR-THE_SYSTEM
 VITE_CM_URL='http://hostname.domain.com/group/s
+SOME_FILE="test.js"
+ANOTHER_URL="ftp://download.test-site.org/file.zip"
 `;
 
 function runTest() {
