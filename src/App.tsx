@@ -64,9 +64,40 @@ function App() {
   };
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(getOutputString());
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const textToCopy = getOutputString();
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2000);
+        })
+        .catch(err => {
+          console.error('Failed to copy text: ', err);
+        });
+    } else {
+      // Fallback for environments without navigator.clipboard (like HTTP)
+      const textArea = document.createElement("textarea");
+      textArea.value = textToCopy;
+
+      // Move outside of screen to make it invisible
+      textArea.style.position = "absolute";
+      textArea.style.left = "-999999px";
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+
+      try {
+        document.execCommand('copy');
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (err) {
+        console.error('Fallback: Oops, unable to copy', err);
+      }
+
+      document.body.removeChild(textArea);
+    }
   };
 
   const handleDownload = () => {
